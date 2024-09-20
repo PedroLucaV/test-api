@@ -56,3 +56,14 @@ export const getUser = async (req, res) => {
         res.status(500).json({message: "Erro ao buscar os usuarios"});
     }
 }
+
+export const getEmail = async (req, res) => {
+    // const {email} = ;
+    try{
+        const UserEm = await User.findOne({where: {email: req.params.email}, raw: true})
+        res.status(200).json(UserEm)
+    }catch(err){
+        console.error(err);
+        res.status(500).json({message: "Erro ao buscar o usuario"});
+    }
+}
